@@ -66,7 +66,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_gSV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.5,
@@ -84,7 +84,7 @@
                 }
             }
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_gCNV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.5,
@@ -278,7 +278,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_gSV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.06,
@@ -296,7 +296,7 @@
                 }
             }
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_gCNV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.06,
@@ -490,7 +490,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_gSV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.03,
@@ -508,7 +508,7 @@
                 }
             }
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_gCNV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.03,
@@ -702,7 +702,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_gSV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.01,
@@ -720,7 +720,7 @@
                 }
             }
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_gCNV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.01,
@@ -914,7 +914,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_gSV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.02,
@@ -932,7 +932,7 @@
                 }
             }
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_gCNV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.02,
@@ -1126,7 +1126,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_gSV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.01,
@@ -1144,7 +1144,7 @@
                 }
             }
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_gCNV_BCF2VCF": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.01,
