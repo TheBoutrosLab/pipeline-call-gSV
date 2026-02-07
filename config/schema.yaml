@@ -17,32 +17,27 @@ run_discovery:
   type: 'Bool'
   required: true
   help: 'Identify SVs using Delly/Manta'
-  default:
-    - true
+  default: true
 run_regenotyping:
   type: 'Bool'
   required: true
   help: 'Regenotype SVs/CNVs using Delly'
-  default:
-    - false
+  default: false
 run_delly:
   type: 'Bool'
   required: true
   help: 'Run Delly'
-  default:
-    - true
+  default: true
 run_manta:
   type: 'Bool'
   required: true
   help: 'Run Manta'
-  default:
-    - true
+  default: true
 run_qc:
   type: 'Bool'
   required: true
   help: 'Run QC'
-  default:
-    - true
+  default: true
 genome_build:
   type: 'String'
   required: true
@@ -89,8 +84,17 @@ save_intermediate_files:
   type: 'Bool'
   required: true
   help: 'Save intermediate files from the pipeline'
-  default:
-    - false
+  default: false
+apptainer_library:
+  type: 'Path'
+  mode: 'r'
+  required: false
+  help: 'Absolute path to Apptainer library directory'
+apptainer_cache:
+  type: 'Path'
+  mode: 'w'
+  required: false
+  help: 'Absolute path to Apptainer cache directory'
 base_resource_update:
   type: 'ResourceUpdateNamespace'
   required: false

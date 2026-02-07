@@ -66,25 +66,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.5,
-                "max": 1
-            },
-            "memory": {
-                "min": "500 MB",
-                "fraction": 0.13,
-                "max": "500 MB"
-            },
-            "retry_strategy": {
-                "memory": {
-                    "strategy": "add",
-                    "operand": "500 MB"
-                }
-            }
-        },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.5,
@@ -278,25 +260,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.06,
-                "max": 1
-            },
-            "memory": {
-                "min": "1 GB",
-                "fraction": 0.03,
-                "max": "1 GB"
-            },
-            "retry_strategy": {
-                "memory": {
-                    "strategy": "exponential",
-                    "operand": 2
-                }
-            }
-        },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.06,
@@ -490,25 +454,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.03,
-                "max": 1
-            },
-            "memory": {
-                "min": "5 GB",
-                "fraction": 0.08,
-                "max": "5 GB"
-            },
-            "retry_strategy": {
-                "memory": {
-                    "strategy": "exponential",
-                    "operand": 2
-                }
-            }
-        },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.03,
@@ -702,25 +648,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.01,
-                "max": 1
-            },
-            "memory": {
-                "min": "10 GB",
-                "fraction": 0.07,
-                "max": "10 GB"
-            },
-            "retry_strategy": {
-                "memory": {
-                    "strategy": "exponential",
-                    "operand": 2
-                }
-            }
-        },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.01,
@@ -914,25 +842,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.02,
-                "max": 1
-            },
-            "memory": {
-                "min": "15 GB",
-                "fraction": 0.02,
-                "max": "15 GB"
-            },
-            "retry_strategy": {
-                "memory": {
-                    "strategy": "exponential",
-                    "operand": 2
-                }
-            }
-        },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.02,
@@ -1126,25 +1036,7 @@
                 }
             }
         },
-        "convert_gSV_BCF2VCF_BCFtools": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.01,
-                "max": 1
-            },
-            "memory": {
-                "min": "10 GB",
-                "fraction": 0.07,
-                "max": "10 GB"
-            },
-            "retry_strategy": {
-                "memory": {
-                    "strategy": "exponential",
-                    "operand": 2
-                }
-            }
-        },
-        "convert_gCNV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
             "cpus": {
                 "min": 1,
                 "fraction": 0.01,
