@@ -1,6 +1,6 @@
 # call-gSV
 
-[![GitHub release](https://img.shields.io/github/v/release/uclahs-cds/pipeline-call-gSV)](https://github.com/uclahs-cds/pipeline-call-gSV/actions/workflows/prepare-release.yaml)
+[![GitHub release](https://img.shields.io/github/v/release/theboutroslab/pipeline-call-gSV)](https://github.com/theboutroslab/pipeline-call-gSV/actions/workflows/prepare-release.yaml)
 
 - [Overview](#overview)
 - [How To Run](#how-to-run)
@@ -65,7 +65,7 @@ Pipelines should be run **WITH A SINGLE SAMPLE AT TIME**. Otherwise resource all
 nextflow run path/to/main.nf -config path/to/sample-specific.config -params-file path/to/input.yaml
 ```
 
-To submit to UCLAHS-CDS's Azure cloud, use the submission script [here](https://github.com/uclahs-cds/tool-submit-nf) with the command below:
+To submit to UCLAHS-CDS's Azure cloud, use the submission script [here](https://github.com/theboutroslab/tool-submit-nf) with the command below:
 
 ```bash
 python path/to/submit_nextflow_pipeline.py \
@@ -276,7 +276,7 @@ Testing was performed leveraging aligned and sorted BAMs generated using `bwa-me
 * **A-partial**:   CPCG0196-B1-downsampled-a-partial-sorted.bam\*
 * **SMC-HET:**    HG002.N.bam
 
-\* In Delly `v1.1.3`, a `coverage check` has been introduced which checks for coverage quality in a given window before CNV calling. Successful CNV calling was observed on samples with coverages across the genome, such as, `a-full-CPCG0196-B1.bam` and `CPCG0196-B1-downsampled-a-partial-sorted.bam` (WGS samples). For more details, please refer to Discussion [#64](https://github.com/uclahs-cds/pipeline-call-gSV/discussions/64).
+\* In Delly `v1.1.3`, a `coverage check` has been introduced which checks for coverage quality in a given window before CNV calling. Successful CNV calling was observed on samples with coverages across the genome, such as, `a-full-CPCG0196-B1.bam` and `CPCG0196-B1-downsampled-a-partial-sorted.bam` (WGS samples). For more details, please refer to Discussion [#64](https://github.com/theboutroslab/pipeline-call-gSV/discussions/64).
 
 Test runs for the A-mini/partial/full samples were performed using the following reference files
 
@@ -334,7 +334,7 @@ Note, per Nature the following benchmarks exist for the human genome:
 
 ### Validation Tool
 
-Included is a template for validating your input files. For more information on the tool check out: https://github.com/uclahs-cds/public-tool-PipeVal
+Included is a template for validating your input files. For more information on the tool check out: https://github.com/theboutroslab/public-tool-PipeVal
 
 ---
 
@@ -348,7 +348,7 @@ Included is a template for validating your input files. For more information on 
 6. [The 1000 Genomes Project Consortium., Corresponding authors., Auton, A. et al. A global reference for human genetic variation. Nature 526, 68–74 (2015). https://doi.org/10.1038/nature15393](https://www.nature.com/articles/nature15393)
 
 ## Contributors
-Please see list of [Contributors](https://github.com/uclahs-cds/pipeline-call-gSV/graphs/contributors) at GitHub.
+Please see list of [Contributors](https://github.com/theboutroslab/pipeline-call-gSV/graphs/contributors) at GitHub.
 
 ## License
 
