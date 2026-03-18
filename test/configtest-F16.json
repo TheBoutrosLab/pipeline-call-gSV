@@ -38,6 +38,9 @@
     "trace.file"
   ],
   "expected_result": {
+    "apptainer": {
+      "enabled": false
+    },
     "docker": {
       "all_group_ids": "$(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
       "enabled": true,
@@ -68,11 +71,7 @@
           "cpus": "6",
           "memory": "8 GB"
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
-          "cpus": "1",
-          "memory": "1 GB"
-        },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
           "cpus": "1",
           "memory": "1 GB"
         },
@@ -109,6 +108,7 @@
       "blcds_registered_dataset": false,
       "cache_intermediate_pipeline_steps": false,
       "circlize_version": "0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
+      "container_mount_flag": "-v",
       "dataset_id": "TEST",
       "delly_version": "1.5.0",
       "docker_container_registry": "ghcr.io/uclahs-cds",
@@ -161,13 +161,7 @@
             "strategy": "exponential"
           }
         },
-        "convert_gCNV_BCF2VCF_BCFtools": {
-          "memory": {
-            "operand": "2",
-            "strategy": "exponential"
-          }
-        },
-        "convert_gSV_BCF2VCF_BCFtools": {
+        "convert_BCF2VCF_BCFtools": {
           "memory": {
             "operand": "2",
             "strategy": "exponential"
@@ -357,16 +351,7 @@
           "closure": "retry_updater(8 GB, exponential, 2, $task.attempt, memory)"
         }
       },
-      "withName:convert_gCNV_BCF2VCF_BCFtools": {
-        "cpus": "1",
-        "memory": {
-          "1": "1 GB",
-          "2": "2 GB",
-          "3": "4 GB",
-          "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
-        }
-      },
-      "withName:convert_gSV_BCF2VCF_BCFtools": {
+      "withName:convert_BCF2VCF_BCFtools": {
         "cpus": "1",
         "memory": {
           "1": "1 GB",
