@@ -2,7 +2,7 @@
 
 All notable changes to the call-gSV pipeline.
 
-## Unreleased
+## [5.4.0] - 2026-04-27
 
 ### Changed
 
@@ -20,6 +20,7 @@ All notable changes to the call-gSV pipeline.
 - Add `convert_BCF2VCF` workflow
 
 ### Changed
+
 - Replace `methods.modify_base_allocations()` with `resource_handler`
 
 ## [5.2.0] - 2024-07-03
@@ -201,17 +202,18 @@ All notable changes to the call-gSV pipeline.
 
 - Initial call-gSV pipeline release
 
-[1.0.0]: https://github.com/uclahs-cds/pipeline-call-gSV/releases/tag/v1.0.0
-[1.0.1]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v1.0.0...v1.0.1
-[2.0.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v1.0.1...v2.0.0
-[2.1.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v2.0.0...v2.1.0
-[2.2.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v2.1.0...v2.2.0
-[3.0.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v2.2.0...v3.0.0
-[4.0.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v4.0.0-rc.1...v4.0.0
-[4.0.0-rc.1]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v3.0.0...v4.0.0-rc.1
-[4.0.1]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v4.0.0...v4.0.1
-[5.0.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v5.0.0-rc.1...v5.0.0
-[5.0.0-rc.1]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v4.0.1...v5.0.0-rc.1
-[5.1.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v5.0.0...v5.1.0
-[5.2.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v5.1.0...v5.2.0
-[5.3.0]: https://github.com/uclahs-cds/pipeline-call-gSV/compare/v5.2.0...v5.3.0
+[1.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/releases/tag/v1.0.0
+[1.0.1]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v1.0.0...v1.0.1
+[2.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v1.0.1...v2.0.0
+[2.1.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v2.0.0...v2.1.0
+[2.2.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v2.1.0...v2.2.0
+[3.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v2.2.0...v3.0.0
+[4.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v4.0.0-rc.1...v4.0.0
+[4.0.0-rc.1]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v3.0.0...v4.0.0-rc.1
+[4.0.1]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v4.0.0...v4.0.1
+[5.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.0.0-rc.1...v5.0.0
+[5.0.0-rc.1]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v4.0.1...v5.0.0-rc.1
+[5.1.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.0.0...v5.1.0
+[5.2.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.1.0...v5.2.0
+[5.3.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.2.0...v5.3.0
+[5.4.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.3.0...v5.4.0
