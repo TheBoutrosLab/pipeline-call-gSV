@@ -6,8 +6,11 @@ All notable changes to the call-gSV pipeline.
 
 ### Changed
 
-- Update DELLY `v1.2.6` to `v1.5.0`
+- Update DELLY `v1.2.6` to `v1.7.3`
 - Remove cluster paths from README
+- Update BCFtools `v1.15.1` to `v1.23.1`
+- Update VCFtools `v0.1.16` to `v0.1.17`
+- Update RTGtools `v3.12` to `v3.13`
 
 ## [5.3.0] - 2025-05-02
 

@@ -104,21 +104,22 @@
           "memory": "1 GB"
         }
       },
-      "bcftools_version": "1.15.1",
+      "bcftools_version": "1.23.1",
       "blcds_registered_dataset": false,
       "cache_intermediate_pipeline_steps": false,
       "circlize_version": "0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
       "container_mount_flag": "-v",
       "dataset_id": "TEST",
-      "delly_version": "1.5.0",
-      "docker_container_registry": "ghcr.io/uclahs-cds",
-      "docker_image_bcftools": "ghcr.io/uclahs-cds/bcftools:1.15.1",
-      "docker_image_circlize": "ghcr.io/uclahs-cds/circlize:0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
-      "docker_image_delly": "ghcr.io/uclahs-cds/delly:1.5.0",
+      "delly_version": "1.7.3",
+      "docker_container_registry_theboutroslab": "ghcr.io/theboutroslab",
+      "docker_container_registry_uclahscds": "ghcr.io/uclahs-cds",
+      "docker_image_bcftools": "ghcr.io/theboutroslab/bcftools:1.23.1",
+      "docker_image_circlize": "ghcr.io/yashpatel6/circlize:0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
+      "docker_image_delly": "ghcr.io/theboutroslab/delly:1.7.3",
       "docker_image_manta": "ghcr.io/uclahs-cds/manta:1.6.0",
-      "docker_image_rtgtools": "ghcr.io/uclahs-cds/rtg-tools:3.12",
+      "docker_image_rtgtools": "ghcr.io/theboutroslab/rtg-tools:3.13",
       "docker_image_validate": "ghcr.io/uclahs-cds/pipeval:4.0.0-rc.2",
-      "docker_image_vcftools": "ghcr.io/uclahs-cds/vcftools:0.1.16",
+      "docker_image_vcftools": "ghcr.io/theboutroslab/vcftools:0.1.17",
       "exclusion_file": "/example/delly/excludeTemplates/human.hg38.excl.tsv",
       "genome_build": "hg38",
       "input": {
@@ -204,7 +205,7 @@
           }
         }
       },
-      "rtgtools_version": "3.12",
+      "rtgtools_version": "3.13",
       "run_delly": true,
       "run_discovery": true,
       "run_manta": true,
@@ -224,7 +225,7 @@
         "gSV",
         "gCNV"
       ],
-      "vcftools_version": "0.1.16",
+      "vcftools_version": "0.1.17",
       "work_dir": "/scratch/300935"
     },
     "process": {
