@@ -172,7 +172,12 @@ workflow {
 
     if (params.run_discovery) {
         if (params.run_manta) {
-            call_gSV_Manta(input_bam_ch, params.reference_fasta, reference_fasta_index)
+            call_gSV_Manta(
+                manta_meta,
+                input_bam_ch,
+                params.reference_fasta,
+                reference_fasta_index
+            )
 
             call_gSV_Manta.out.vcf_candidate_sv_file
                 .map{ ['Manta', it] }
@@ -215,9 +220,9 @@ workflow {
 
             run_sha512sum_gSV_Delly(
                 call_gSV_Delly.out.bcf_sv_file
-                .mix(call_gSV_Delly.out.bcf_sv_file_csi)
-                .mix(convert_gSV_BCF2VCF.out.gzvcf)
-                .mix(convert_gSV_BCF2VCF.out.idx)
+                    .mix(call_gSV_Delly.out.bcf_sv_file_csi)
+                    .mix(convert_gSV_BCF2VCF.out.gzvcf)
+                    .mix(convert_gSV_BCF2VCF.out.idx)
                 )
 
             if (params.variant_type.contains(params.GCNV)) {
@@ -238,9 +243,9 @@ workflow {
 
                 run_sha512sum_gCNV_Delly(
                     call_gCNV_Delly.out.bcf_cnv_file
-                    .mix(call_gCNV_Delly.out.bcf_cnv_file_csi)
-                    .mix(convert_gCNV_BCF2VCF.out.gzvcf)
-                    .mix(convert_gCNV_BCF2VCF.out.idx)
+                        .mix(call_gCNV_Delly.out.bcf_cnv_file_csi)
+                        .mix(convert_gCNV_BCF2VCF.out.gzvcf)
+                        .mix(convert_gCNV_BCF2VCF.out.idx)
                     )
                 }
 
@@ -290,7 +295,10 @@ workflow {
                 params.merged_sites_gSV
             )
 
-            run_sha512sum_regeno_gSV_Delly(regenotype_gSV_Delly.out.regenotyped_sv_bcf.mix(regenotype_gSV_Delly.out.regenotyped_sv_bcf_csi))
+            run_sha512sum_regeno_gSV_Delly(
+                regenotype_gSV_Delly.out.regenotyped_sv_bcf
+                    .mix(regenotype_gSV_Delly.out.regenotyped_sv_bcf_csi)
+            )
         }
 
         if (params.variant_type.contains(params.GCNV)) {
@@ -303,7 +311,10 @@ workflow {
                 params.merged_sites_gCNV
             )
 
-            run_sha512sum_regeno_gCNV_Delly(regenotype_gCNV_Delly.out.regenotyped_cnv_bcf.mix(regenotype_gCNV_Delly.out.regenotyped_cnv_bcf_csi))
+            run_sha512sum_regeno_gCNV_Delly(
+                regenotype_gCNV_Delly.out.regenotyped_cnv_bcf
+                    .mix(regenotype_gCNV_Delly.out.regenotyped_cnv_bcf_csi)
+            )
         }
     }
 }
