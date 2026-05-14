@@ -62,16 +62,18 @@ include { call_gSV_Delly; call_gCNV_Delly; regenotype_gSV_Delly; regenotype_gCNV
 
 include { call_gSV_Manta } from './module/manta'
 
-include { convert_BCF2VCF as convert_gSV_BCF2VCF; convert_BCF2VCF as convert_gCNV_BCF2VCF } from './module/workflow-convert_BCF2VCF'
+include {
+    convert_BCF2VCF as convert_gSV_BCF2VCF
+    convert_BCF2VCF as convert_gCNV_BCF2VCF } from './module/workflow-convert_BCF2VCF'
 
-include { run_vcfstats_RTGTools as run_gSV_vcfstats_RTGTools; run_vcfstats_RTGTools as run_gCNV_vcfstats_RTGTools } from './module/rtgtools' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
-    workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
-    )
-include { run_vcf_validator_VCFtools as run_gSV_vcf_validator_VCFtools; run_vcf_validator_VCFtools as run_gCNV_vcf_validator_VCFtools } from './module/vcftools' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
-    workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
-    )
+include {
+    run_vcfstats_RTGTools as run_gSV_vcfstats_RTGTools
+    run_vcfstats_RTGTools as run_gCNV_vcfstats_RTGTools } from './module/rtgtools'
+
+include {
+    run_vcf_validator_VCFtools as run_gSV_vcf_validator_VCFtools
+    run_vcf_validator_VCFtools as run_gCNV_vcf_validator_VCFtools } from './module/vcftools'
+
 include { plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot.nf' addParams(
     workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}"
     )
@@ -243,12 +245,34 @@ workflow {
                 }
 
             if (params.run_qc) {
-                run_gSV_vcfstats_RTGTools(convert_gSV_BCF2VCF.out.gzvcf, call_gSV_Delly.out.bam_sample_name, params.GSV)
-                run_gSV_vcf_validator_VCFtools(convert_gSV_BCF2VCF.out.gzvcf, call_gSV_Delly.out.bam_sample_name, params.GSV)
+                run_gSV_vcfstats_RTGTools(
+                    delly_meta,
+                    convert_gSV_BCF2VCF.out.gzvcf,
+                    call_gSV_Delly.out.bam_sample_name,
+                    params.GSV
+                )
+
+                run_gSV_vcf_validator_VCFtools(
+                    delly_meta,
+                    convert_gSV_BCF2VCF.out.gzvcf,
+                    call_gSV_Delly.out.bam_sample_name,
+                    params.GSV
+                )
 
                 if (params.variant_type.contains(params.GCNV)) {
-                    run_gCNV_vcfstats_RTGTools(convert_gCNV_BCF2VCF.out.gzvcf, call_gCNV_Delly.out.bam_sample_name, params.GCNV)
-                    run_gCNV_vcf_validator_VCFtools(convert_gCNV_BCF2VCF.out.gzvcf, call_gCNV_Delly.out.bam_sample_name, params.GCNV)
+                    run_gCNV_vcfstats_RTGTools(
+                        delly_meta,
+                        convert_gCNV_BCF2VCF.out.gzvcf,
+                        call_gCNV_Delly.out.bam_sample_name,
+                        params.GCNV
+                    )
+
+                    run_gCNV_vcf_validator_VCFtools(
+                        delly_meta,
+                        convert_gCNV_BCF2VCF.out.gzvcf,
+                        call_gCNV_Delly.out.bam_sample_name,
+                        params.GCNV
+                    )
                     }
                 }
             }
