@@ -20,11 +20,6 @@ process plot_SV_circlize {
         pattern: "*.png",
         mode: "copy"
 
-    publishDir "${META.log_output_dir}/process-log",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process}/${task.process}-${task.index}/log${file(it).getName()}" }
-
     input:
         val(META)
         tuple(
