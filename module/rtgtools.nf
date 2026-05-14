@@ -11,12 +11,13 @@ Docker Images:
 process run_vcfstats_RTGTools {
     container params.docker_image_rtgtools
 
-    publishDir "${params.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
+    publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "*_stats.txt",
         mode: "copy"
 
     input:
+        val META
         path vcf_sv_file
         val bam_sample_name
         val variant_type

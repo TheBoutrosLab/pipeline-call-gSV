@@ -2,6 +2,12 @@
 
 All notable changes to the call-gSV pipeline.
 
+## [Unreleased]
+
+### Removed
+
+- Usage of `addParams`
+
 ## [5.4.0] - 2026-04-27
 
 ### Changed
