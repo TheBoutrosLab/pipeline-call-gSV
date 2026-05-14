@@ -46,6 +46,8 @@ Starting workflow...
 """
 .stripIndent()
 
+include { indexFile } from './external/pipeline-Nextflow-module/modules/common/indexFile/main.nf'
+
 include { generate_standard_filename } from './external/pipeline-Nextflow-module/modules/common/generate_standardized_filename/main.nf'
 
 include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf'
@@ -77,24 +79,6 @@ include {
 include {
     plot_SV_circlize as plot_MantaSV_circlize
     plot_SV_circlize as plot_DellySV_circlize } from './module/circos-plot.nf'
-
-// include { run_sha512sum as run_sha512sum_gSV_Delly; run_sha512sum as run_sha512sum_gCNV_Delly; run_sha512sum as run_sha512sum_regeno_gSV_Delly; run_sha512sum as run_sha512sum_regeno_gCNV_Delly } from './module/sha512' addParams(
-//     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
-//     workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
-//     )
-// include { run_sha512sum as run_sha512sum_Manta } from './module/sha512' addParams(
-//     workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}",
-//     workflow_log_dir: "${params.log_output_dir}/process-log/Manta-${params.manta_version}"
-//     )
-
-// Returns the index file for the given bam
-def indexFile(bam) {
-    if (bam.endsWith('.bam')) {
-        return "${bam}.bai"
-    } else {
-        throw new Exception("Index file for ${bam} file type not supported. Use .bam!")
-    }
-}
 
 Channel.from(params.sample_to_process)
     .map{ sample -> ['index': indexFile(sample.path)] + sample }
