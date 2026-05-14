@@ -11,11 +11,12 @@ Docker Images:
 process run_vcf_validator_VCFtools {
     container params.docker_image_vcftools
 
-    publishDir "${params.workflow_output_dir}/QC/${task.process.replace(':', '/')}",
+    publishDir "${META.workflow_output_dir}/QC/${task.process.replace(':', '/')}",
         pattern: "*_validation.txt",
         mode: "copy"
 
     input:
+        val META
         path vcf_sv_file
         val bam_sample_name
         val variant_type
