@@ -2,7 +2,6 @@
 
 nextflow.enable.dsl=2
 
-
 log.info """\
 =======================================
 C A L L - G S V   N F   P I P E L I N E
@@ -49,9 +48,16 @@ Starting workflow...
 
 include { generate_standard_filename } from './external/pipeline-Nextflow-module/modules/common/generate_standardized_filename/main.nf'
 
-include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf' addParams(
-    options: [ docker_image_version: params.pipeval_version ]
-    )
+include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf'
+
+include {
+    generate_checksum_PipeVal as run_sha512sum_gSV_Delly
+    generate_checksum_PipeVal as run_sha512sum_gCNV_Delly
+    generate_checksum_PipeVal as run_sha512sum_regeno_gSV_Delly
+    generate_checksum_PipeVal as run_sha512sum_regeno_gCNV_Delly
+    generate_checksum_PipeVal as run_sha512sum_Manta
+} from './external/pipeline-Nextflow-module/modules/PipeVal/generate-checksum/main.nf'
+
 include { call_gSV_Delly; call_gCNV_Delly; regenotype_gSV_Delly; regenotype_gCNV_Delly } from './module/delly' addParams(
     output_filename: generate_standard_filename(
         "DELLY-${params.delly_version}",
@@ -62,16 +68,9 @@ include { call_gSV_Delly; call_gCNV_Delly; regenotype_gSV_Delly; regenotype_gCNV
     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
     workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
     )
-include { call_gSV_Manta } from './module/manta' addParams(
-    output_filename: generate_standard_filename(
-        "Manta-${params.manta_version}",
-        params.dataset_id,
-        "${params.sample}",
-        [:]
-        ),
-    workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}",
-    workflow_log_dir: "${params.log_output_dir}/process-log/Manta-${params.manta_version}"
-    )
+
+include { call_gSV_Manta } from './module/manta'
+
 include { convert_BCF2VCF as convert_gSV_BCF2VCF; convert_BCF2VCF as convert_gCNV_BCF2VCF } from './module/workflow-convert_BCF2VCF' addParams(
     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
     )
@@ -89,14 +88,14 @@ include { plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot
 include { plot_SV_circlize as plot_DellySV_circlize } from './module/circos-plot.nf' addParams(
     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
     )
-include { run_sha512sum as run_sha512sum_gSV_Delly; run_sha512sum as run_sha512sum_gCNV_Delly; run_sha512sum as run_sha512sum_regeno_gSV_Delly; run_sha512sum as run_sha512sum_regeno_gCNV_Delly } from './module/sha512' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
-    workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
-    )
-include { run_sha512sum as run_sha512sum_Manta } from './module/sha512' addParams(
-    workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}",
-    workflow_log_dir: "${params.log_output_dir}/process-log/Manta-${params.manta_version}"
-    )
+// include { run_sha512sum as run_sha512sum_gSV_Delly; run_sha512sum as run_sha512sum_gCNV_Delly; run_sha512sum as run_sha512sum_regeno_gSV_Delly; run_sha512sum as run_sha512sum_regeno_gCNV_Delly } from './module/sha512' addParams(
+//     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
+//     workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
+//     )
+// include { run_sha512sum as run_sha512sum_Manta } from './module/sha512' addParams(
+//     workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}",
+//     workflow_log_dir: "${params.log_output_dir}/process-log/Manta-${params.manta_version}"
+//     )
 
 // Returns the index file for the given bam
 def indexFile(bam) {
@@ -123,11 +122,57 @@ input_ch_samples_with_index
 reference_fasta_index = "${params.reference_fasta}.fai"
 
 workflow {
+    meta_base = Channel.value([
+        "output_dir_base": params.output_dir_base,
+        "log_output_dir": params.log_output_dir
+    ])
+
+    validate_meta = meta_base.map{ base_m ->
+        base_m + [
+            "docker_image": params.docker_image_validate
+        ]
+    }
+
+    checksum_meta_base = meta_base.map{ base_m ->
+        base_m + [
+            "docker_image": params.docker_image_validate,
+            "log_output_dir": "${base_m.log_output_dir}/process-log",
+        ]
+    }
+
+    delly_meta = checksum_meta_base.map{ base_m ->
+        base_m + [
+            "output_filename": generate_standard_filename(
+                "DELLY-${params.delly_version}",
+                params.dataset_id,
+                "${params.sample}",
+                [:]
+            ),
+            "output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}",
+            "workflow_output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}",
+            "workflow_log_dir": "${base_m.log_output_dir}/process-log/DELLY-${params.delly_version}"
+        ]
+    }
+
+    manta_meta = checksum_meta_base.map{ base_m ->
+        base_m + [
+            "output_filename": generate_standard_filename(
+                "Manta-${params.manta_version}",
+                params.dataset_id,
+                "${params.sample}",
+                [:]
+            ),
+            "output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}",
+            "workflow_output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}",
+            "workflow_log_dir": "${base_m.log_output_dir}/process-log/Manta-${params.manta_version}"
+        ]
+    }
+
     /**
     * Validate the input bams
     */
-    run_validate_PipeVal(input_validation)
-    // Collect and store input validation output
+    run_validate_PipeVal(validate_meta.combine(input_validation))
+
     run_validate_PipeVal.out.validation_result.collectFile(
         name: 'input_validation.txt',
         storeDir: "${params.output_dir_base}/validation/run_validate_PipeVal"
