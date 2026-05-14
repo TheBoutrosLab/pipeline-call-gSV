@@ -186,13 +186,17 @@ workflow {
                 input_ch_plot_manta
                 )
 
-            run_sha512sum_Manta(call_gSV_Manta.out.vcf_small_indel_sv_file.mix(
-                call_gSV_Manta.out.vcf_diploid_sv_file,
-                call_gSV_Manta.out.vcf_candidate_sv_file,
-                call_gSV_Manta.out.vcf_small_indel_sv_tbi,
-                call_gSV_Manta.out.vcf_diploid_sv_tbi,
-                call_gSV_Manta.out.vcf_candidate_sv_tbi
-                ))
+            run_sha512sum_Manta(
+                manta_meta.combine(
+                    call_gSV_Manta.out.vcf_small_indel_sv_file.mix(
+                        call_gSV_Manta.out.vcf_diploid_sv_file,
+                        call_gSV_Manta.out.vcf_candidate_sv_file,
+                        call_gSV_Manta.out.vcf_small_indel_sv_tbi,
+                        call_gSV_Manta.out.vcf_diploid_sv_tbi,
+                        call_gSV_Manta.out.vcf_candidate_sv_tbi
+                        )
+                    )
+                )
             }
         if (params.run_delly) {
             call_gSV_Delly(
@@ -219,10 +223,12 @@ workflow {
                 )
 
             run_sha512sum_gSV_Delly(
-                call_gSV_Delly.out.bcf_sv_file
-                    .mix(call_gSV_Delly.out.bcf_sv_file_csi)
-                    .mix(convert_gSV_BCF2VCF.out.gzvcf)
-                    .mix(convert_gSV_BCF2VCF.out.idx)
+                delly_meta.combine(
+                    call_gSV_Delly.out.bcf_sv_file
+                        .mix(call_gSV_Delly.out.bcf_sv_file_csi)
+                        .mix(convert_gSV_BCF2VCF.out.gzvcf)
+                        .mix(convert_gSV_BCF2VCF.out.idx)
+                    )
                 )
 
             if (params.variant_type.contains(params.GCNV)) {
@@ -242,10 +248,12 @@ workflow {
                     )
 
                 run_sha512sum_gCNV_Delly(
-                    call_gCNV_Delly.out.bcf_cnv_file
-                        .mix(call_gCNV_Delly.out.bcf_cnv_file_csi)
-                        .mix(convert_gCNV_BCF2VCF.out.gzvcf)
-                        .mix(convert_gCNV_BCF2VCF.out.idx)
+                    delly_meta.combine(
+                        call_gCNV_Delly.out.bcf_cnv_file
+                            .mix(call_gCNV_Delly.out.bcf_cnv_file_csi)
+                            .mix(convert_gCNV_BCF2VCF.out.gzvcf)
+                            .mix(convert_gCNV_BCF2VCF.out.idx)
+                        )
                     )
                 }
 
@@ -296,8 +304,10 @@ workflow {
             )
 
             run_sha512sum_regeno_gSV_Delly(
-                regenotype_gSV_Delly.out.regenotyped_sv_bcf
-                    .mix(regenotype_gSV_Delly.out.regenotyped_sv_bcf_csi)
+                delly_meta.combine(
+                    regenotype_gSV_Delly.out.regenotyped_sv_bcf
+                        .mix(regenotype_gSV_Delly.out.regenotyped_sv_bcf_csi)
+                )
             )
         }
 
@@ -312,8 +322,10 @@ workflow {
             )
 
             run_sha512sum_regeno_gCNV_Delly(
-                regenotype_gCNV_Delly.out.regenotyped_cnv_bcf
-                    .mix(regenotype_gCNV_Delly.out.regenotyped_cnv_bcf_csi)
+                delly_meta.combine(
+                    regenotype_gCNV_Delly.out.regenotyped_cnv_bcf
+                        .mix(regenotype_gCNV_Delly.out.regenotyped_cnv_bcf_csi)
+                )
             )
         }
     }
