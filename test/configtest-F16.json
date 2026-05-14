@@ -118,7 +118,7 @@
       "docker_image_delly": "ghcr.io/theboutroslab/delly:1.7.3",
       "docker_image_manta": "ghcr.io/uclahs-cds/manta:1.6.0",
       "docker_image_rtgtools": "ghcr.io/theboutroslab/rtg-tools:3.13",
-      "docker_image_validate": "ghcr.io/uclahs-cds/pipeval:4.0.0-rc.2",
+      "docker_image_validate": "ghcr.io/uclahs-cds/pipeval:5.2.0",
       "docker_image_vcftools": "ghcr.io/theboutroslab/vcftools:0.1.17",
       "exclusion_file": "/example/delly/excludeTemplates/human.hg38.excl.tsv",
       "genome_build": "hg38",
@@ -141,7 +141,7 @@
       "min_time": "1s",
       "output_dir": "/tmp/test-only-outputs",
       "output_dir_base": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309",
-      "pipeval_version": "4.0.0-rc.2",
+      "pipeval_version": "5.2.0",
       "reference_fasta": "/example/genome/GRCh38-BI-20160721/Homo_sapiens_assembly38.fasta",
       "retry_information": {
         "call_gCNV_Delly": {
