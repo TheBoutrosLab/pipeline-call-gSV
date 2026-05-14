@@ -11,19 +11,20 @@ Docker Images:
 process call_gSV_Delly {
     container params.docker_image_delly
 
-    publishDir "${params.workflow_output_dir}/output",
+    publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
         mode: "copy"
 
     input:
+        val(META)
         tuple val(bam_sample_name), path(input_bam), path(input_bam_bai)
         path(reference_fasta)
         path(reference_fasta_fai)
         path(exclusion_file)
 
     output:
-        path "${params.output_filename}_${params.GSV}.bcf", emit: bcf_sv_file
-        path "${params.output_filename}_${params.GSV}.bcf.csi", emit: bcf_sv_file_csi
+        path "${META.output_filename}_${params.GSV}.bcf", emit: bcf_sv_file
+        path "${META.output_filename}_${params.GSV}.bcf.csi", emit: bcf_sv_file_csi
         val bam_sample_name, emit: bam_sample_name
 
     script:
@@ -33,7 +34,7 @@ process call_gSV_Delly {
         call \
         --exclude   $exclusion_file \
         --genome    $reference_fasta \
-        --outfile   ${params.output_filename}_${params.GSV}.bcf \
+        --outfile   ${META.output_filename}_${params.GSV}.bcf \
         --map-qual ${params.map_qual} \
         $input_bam
     """
@@ -42,11 +43,12 @@ process call_gSV_Delly {
 process regenotype_gSV_Delly {
     container params.docker_image_delly
 
-    publishDir "${params.workflow_output_dir}/output",
+    publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
         mode: "copy"
 
     input:
+        val(META)
         tuple val(bam_sample_name), path(input_bam), path(input_bam_bai)
         path(reference_fasta)
         path(reference_fasta_fai)
@@ -54,8 +56,8 @@ process regenotype_gSV_Delly {
         path(sites)
 
     output:
-        path "${params.output_filename}_${params.RGSV}.bcf", emit: regenotyped_sv_bcf
-        path "${params.output_filename}_${params.RGSV}.bcf.csi", emit: regenotyped_sv_bcf_csi
+        path "${META.output_filename}_${params.RGSV}.bcf", emit: regenotyped_sv_bcf
+        path "${META.output_filename}_${params.RGSV}.bcf.csi", emit: regenotyped_sv_bcf_csi
 
     script:
     """
@@ -65,7 +67,7 @@ process regenotype_gSV_Delly {
         --vcffile $sites \
         --exclude $exclusion_file \
         --genome $reference_fasta \
-        --outfile "${params.output_filename}_${params.RGSV}.bcf" \
+        --outfile "${META.output_filename}_${params.RGSV}.bcf" \
         --map-qual ${params.map_qual} \
         "$input_bam"
     """
@@ -74,11 +76,12 @@ process regenotype_gSV_Delly {
 process call_gCNV_Delly {
     container params.docker_image_delly
 
-    publishDir "${params.workflow_output_dir}/output",
+    publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
         mode: "copy"
 
     input:
+        val(META)
         tuple val(bam_sample_name), path(input_bam), path(input_bam_bai)
         path(delly_sv_file)
         path(reference_fasta)
@@ -86,8 +89,8 @@ process call_gCNV_Delly {
         path(mappability_file)
 
     output:
-        path "${params.output_filename}_${params.GCNV}.bcf", emit: bcf_cnv_file
-        path "${params.output_filename}_${params.GCNV}.bcf.csi", emit: bcf_cnv_file_csi
+        path "${META.output_filename}_${params.GCNV}.bcf", emit: bcf_cnv_file
+        path "${META.output_filename}_${params.GCNV}.bcf.csi", emit: bcf_cnv_file_csi
         val bam_sample_name, emit: bam_sample_name
 
     script:
@@ -96,7 +99,7 @@ process call_gCNV_Delly {
     delly \
         cnv \
         --genome        $reference_fasta \
-        --outfile       ${params.output_filename}_${params.GCNV}.bcf \
+        --outfile       ${META.output_filename}_${params.GCNV}.bcf \
         --svfile        $delly_sv_file \
         --mappability   $mappability_file \
         $input_bam
@@ -106,11 +109,12 @@ process call_gCNV_Delly {
 process regenotype_gCNV_Delly {
     container params.docker_image_delly
 
-    publishDir "${params.workflow_output_dir}/output",
+    publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
         mode: "copy"
 
     input:
+        val(META)
         tuple val(bam_sample_name), path(input_bam), path(input_bam_bai)
         path(reference_fasta)
         path(reference_fasta_fai)
@@ -118,8 +122,8 @@ process regenotype_gCNV_Delly {
         path(sites)
 
     output:
-        path "${params.output_filename}_${params.RGCNV}.bcf", emit: regenotyped_cnv_bcf
-        path "${params.output_filename}_${params.RGCNV}.bcf.csi", emit: regenotyped_cnv_bcf_csi
+        path "${META.output_filename}_${params.RGCNV}.bcf", emit: regenotyped_cnv_bcf
+        path "${META.output_filename}_${params.RGCNV}.bcf.csi", emit: regenotyped_cnv_bcf_csi
 
     script:
     """
@@ -130,7 +134,7 @@ process regenotype_gCNV_Delly {
         -v $sites \
         --genome $reference_fasta \
         -m $mappability_file \
-        --outfile "${params.output_filename}_${params.RGCNV}.bcf" \
+        --outfile "${META.output_filename}_${params.RGCNV}.bcf" \
         "$input_bam"
     """
     }
