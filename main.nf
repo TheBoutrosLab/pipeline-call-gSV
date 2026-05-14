@@ -80,6 +80,8 @@ include {
     plot_SV_circlize as plot_MantaSV_circlize
     plot_SV_circlize as plot_DellySV_circlize } from './module/circos-plot.nf'
 
+
+
 Channel.from(params.sample_to_process)
     .map{ sample -> ['index': indexFile(sample.path)] + sample }
     .set{ input_ch_samples_with_index }
