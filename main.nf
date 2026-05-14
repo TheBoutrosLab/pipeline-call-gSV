@@ -103,20 +103,13 @@ workflow {
         "log_output_dir": params.log_output_dir
     ])
 
-    validate_meta = meta_base.map{ base_m ->
+    pipeval_meta = meta_base.map{ base_m ->
         base_m + [
             "docker_image": params.docker_image_validate
         ]
     }
 
-    checksum_meta_base = meta_base.map{ base_m ->
-        base_m + [
-            "docker_image": params.docker_image_validate,
-            "log_output_dir": "${base_m.log_output_dir}/process-log",
-        ]
-    }
-
-    delly_meta = checksum_meta_base.map{ base_m ->
+    delly_meta = pipeval_meta.map{ base_m ->
         base_m + [
             "output_filename": generate_standard_filename(
                 "DELLY-${params.delly_version}",
@@ -130,7 +123,7 @@ workflow {
         ]
     }
 
-    manta_meta = checksum_meta_base.map{ base_m ->
+    manta_meta = pipeval_meta.map{ base_m ->
         base_m + [
             "output_filename": generate_standard_filename(
                 "Manta-${params.manta_version}",
@@ -147,7 +140,7 @@ workflow {
     /**
     * Validate the input bams
     */
-    run_validate_PipeVal(validate_meta.combine(input_validation))
+    run_validate_PipeVal(pipeval_meta.combine(input_validation))
 
     run_validate_PipeVal.out.validation_result.collectFile(
         name: 'input_validation.txt',
