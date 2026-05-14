@@ -74,12 +74,10 @@ include {
     run_vcf_validator_VCFtools as run_gSV_vcf_validator_VCFtools
     run_vcf_validator_VCFtools as run_gCNV_vcf_validator_VCFtools } from './module/vcftools'
 
-include { plot_SV_circlize as plot_MantaSV_circlize } from './module/circos-plot.nf' addParams(
-    workflow_output_dir: "${params.output_dir_base}/Manta-${params.manta_version}"
-    )
-include { plot_SV_circlize as plot_DellySV_circlize } from './module/circos-plot.nf' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}"
-    )
+include {
+    plot_SV_circlize as plot_MantaSV_circlize
+    plot_SV_circlize as plot_DellySV_circlize } from './module/circos-plot.nf'
+
 // include { run_sha512sum as run_sha512sum_gSV_Delly; run_sha512sum as run_sha512sum_gCNV_Delly; run_sha512sum as run_sha512sum_regeno_gSV_Delly; run_sha512sum as run_sha512sum_regeno_gCNV_Delly } from './module/sha512' addParams(
 //     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
 //     workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
@@ -184,6 +182,7 @@ workflow {
                 .set{ input_ch_plot_manta }
 
             plot_MantaSV_circlize(
+                manta_meta,
                 input_ch_plot_manta
                 )
 
@@ -215,6 +214,7 @@ workflow {
                 .set{ input_ch_plot_delly }
 
             plot_DellySV_circlize(
+                delly_meta,
                 input_ch_plot_delly
                 )
 
