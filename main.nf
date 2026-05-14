@@ -58,16 +58,7 @@ include {
     generate_checksum_PipeVal as run_sha512sum_Manta
 } from './external/pipeline-Nextflow-module/modules/PipeVal/generate-checksum/main.nf'
 
-include { call_gSV_Delly; call_gCNV_Delly; regenotype_gSV_Delly; regenotype_gCNV_Delly } from './module/delly' addParams(
-    output_filename: generate_standard_filename(
-        "DELLY-${params.delly_version}",
-        params.dataset_id,
-        "${params.sample}",
-        [:]
-        ),
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
-    workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
-    )
+include { call_gSV_Delly; call_gCNV_Delly; regenotype_gSV_Delly; regenotype_gCNV_Delly } from './module/delly'
 
 include { call_gSV_Manta } from './module/manta'
 
@@ -199,7 +190,13 @@ workflow {
                 ))
             }
         if (params.run_delly) {
-            call_gSV_Delly(input_bam_ch, params.reference_fasta, reference_fasta_index, params.exclusion_file)
+            call_gSV_Delly(
+                delly_meta,
+                input_bam_ch,
+                params.reference_fasta,
+                reference_fasta_index,
+                params.exclusion_file
+            )
 
             convert_gSV_BCF2VCF(
                 call_gSV_Delly.out.bam_sample_name,
@@ -223,12 +220,21 @@ workflow {
                 )
 
             if (params.variant_type.contains(params.GCNV)) {
-                call_gCNV_Delly(input_bam_ch, call_gSV_Delly.out.bcf_sv_file.toList(), params.reference_fasta, reference_fasta_index, params.mappability_map)
+                call_gCNV_Delly(
+                    delly_meta,
+                    input_bam_ch,
+                    call_gSV_Delly.out.bcf_sv_file.toList(),
+                    params.reference_fasta,
+                    reference_fasta_index,
+                    params.mappability_map
+                )
+
                 convert_gCNV_BCF2VCF(
                     call_gCNV_Delly.out.bam_sample_name,
                     call_gCNV_Delly.out.bcf_cnv_file,
                     call_gCNV_Delly.out.bcf_cnv_file_csi
                     )
+
                 run_sha512sum_gCNV_Delly(
                     call_gCNV_Delly.out.bcf_cnv_file
                     .mix(call_gCNV_Delly.out.bcf_cnv_file_csi)
@@ -252,12 +258,28 @@ workflow {
     // regenotyping process to run. For example, if the variant_type contains 'gSV', regenotype_gSV_Delly will run, etc.
     if (params.run_regenotyping) {
         if (params.variant_type.contains(params.GSV)) {
-            regenotype_gSV_Delly(input_bam_ch, params.reference_fasta, reference_fasta_index, params.exclusion_file, params.merged_sites_gSV)
+            regenotype_gSV_Delly(
+                delly_meta,
+                input_bam_ch,
+                params.reference_fasta,
+                reference_fasta_index,
+                params.exclusion_file,
+                params.merged_sites_gSV
+            )
+
             run_sha512sum_regeno_gSV_Delly(regenotype_gSV_Delly.out.regenotyped_sv_bcf.mix(regenotype_gSV_Delly.out.regenotyped_sv_bcf_csi))
         }
 
         if (params.variant_type.contains(params.GCNV)) {
-            regenotype_gCNV_Delly(input_bam_ch, params.reference_fasta, reference_fasta_index, params.mappability_map, params.merged_sites_gCNV)
+            regenotype_gCNV_Delly(
+                delly_meta,
+                input_bam_ch,
+                params.reference_fasta,
+                reference_fasta_index,
+                params.mappability_map,
+                params.merged_sites_gCNV
+            )
+
             run_sha512sum_regeno_gCNV_Delly(regenotype_gCNV_Delly.out.regenotyped_cnv_bcf.mix(regenotype_gCNV_Delly.out.regenotyped_cnv_bcf_csi))
         }
     }
