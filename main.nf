@@ -62,9 +62,8 @@ include { call_gSV_Delly; call_gCNV_Delly; regenotype_gSV_Delly; regenotype_gCNV
 
 include { call_gSV_Manta } from './module/manta'
 
-include { convert_BCF2VCF as convert_gSV_BCF2VCF; convert_BCF2VCF as convert_gCNV_BCF2VCF } from './module/workflow-convert_BCF2VCF' addParams(
-    workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
-    )
+include { convert_BCF2VCF as convert_gSV_BCF2VCF; convert_BCF2VCF as convert_gCNV_BCF2VCF } from './module/workflow-convert_BCF2VCF'
+
 include { run_vcfstats_RTGTools as run_gSV_vcfstats_RTGTools; run_vcfstats_RTGTools as run_gCNV_vcfstats_RTGTools } from './module/rtgtools' addParams(
     workflow_output_dir: "${params.output_dir_base}/DELLY-${params.delly_version}",
     workflow_log_dir: "${params.log_output_dir}/process-log/DELLY-${params.delly_version}"
