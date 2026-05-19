@@ -4,6 +4,10 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+### Changed
+
+- Update DELLY `v1.7.3` to `v2.0.0`
+
 ### Removed
 
 - Usage of `addParams`
