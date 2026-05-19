@@ -1,8 +1,0 @@
----
-category: "pipeline"
-description: "Nextflow pipeline to call germline structural variants and copy number variants using DELLY and Manta"
-maintainers: "Boutros Lab Infrastructure BoutrosLabInfrastructure@mednet.ucla.edu"
-languages: ["Nextflow", "Docker"]
-dependencies: ["Java", "Nextflow", "Docker"]
-references: "https://uclahs-cds.atlassian.net/wiki/spaces/BOUTROSLAB/pages/3189620/Guide+to+Nextflow"
-tools: ["Delly:v1.5.0", "Manta:v1.6.0", "BCFtools:v1.15.1", "VCFtools:v0.1.16", "RTG-tools:v3.12", "circlize:v0.4.16", "PipeVal:v4.0.0-rc.2"]
