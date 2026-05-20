@@ -29,7 +29,6 @@ process plot_SV_circlize {
 
     output:
         path "*.png"
-        path ".command.*"
 
     script:
     output_filename = generate_standard_filename(

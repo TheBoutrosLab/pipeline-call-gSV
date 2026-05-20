@@ -11,6 +11,7 @@ All notable changes to the call-gSV pipeline.
 ### Removed
 
 - Usage of `addParams`
+- Unnecessary `.command.*` output channels from processes
 
 ## [5.4.0] - 2026-04-27
 
