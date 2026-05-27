@@ -105,7 +105,8 @@ workflow {
 
     pipeval_meta = meta_base.map{ base_m ->
         base_m + [
-            "docker_image": params.docker_image_validate
+            "docker_image": params.docker_image_validate,
+            "log_output_dir": "${base_m.log_output_dir}/process-log"
         ]
     }
 
@@ -119,7 +120,7 @@ workflow {
             ),
             "output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}/output",
             "workflow_output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}",
-            "workflow_log_dir": "${base_m.log_output_dir}/process-log/DELLY-${params.delly_version}"
+            "workflow_log_dir": "${base_m.log_output_dir}/DELLY-${params.delly_version}"
         ]
     }
 
@@ -133,7 +134,7 @@ workflow {
             ),
             "output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}/output",
             "workflow_output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}",
-            "workflow_log_dir": "${base_m.log_output_dir}/process-log/Manta-${params.manta_version}"
+            "workflow_log_dir": "${base_m.log_output_dir}/Manta-${params.manta_version}"
         ]
     }
 
