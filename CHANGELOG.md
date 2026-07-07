@@ -2,6 +2,12 @@
 
 All notable changes to the call-gSV pipeline.
 
+## [Unreleased]
+
+### Changed
+
+- Update DELLY `v2.1.0` to `v2.3.0`
+
 ## [5.6.0] - 2026-06-18
 
 ### Changed
@@ -219,6 +225,7 @@ All notable changes to the call-gSV pipeline.
 
 - Initial call-gSV pipeline release
 
+[Unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.6.0...HEAD
 [1.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/releases/tag/v1.0.0
 [1.0.1]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v1.0.0...v1.0.1
 [2.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v1.0.1...v2.0.0
