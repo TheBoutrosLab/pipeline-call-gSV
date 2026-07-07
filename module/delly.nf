@@ -31,7 +31,7 @@ process call_gSV_Delly {
     """
     set -euo pipefail
     delly \
-        call \
+        sr \
         --exclude   $exclusion_file \
         --genome    $reference_fasta \
         --outfile   ${META.output_filename}_${params.GSV}.bcf \
@@ -63,7 +63,7 @@ process regenotype_gSV_Delly {
     """
     set -euo pipefail
     delly \
-        call \
+        sr \
         --vcffile $sites \
         --exclude $exclusion_file \
         --genome $reference_fasta \
