@@ -2,6 +2,12 @@
 
 All notable changes to the call-gSV pipeline.
 
+## [Unreleased]
+
+### Added
+
+- Add Singularity containerization profile
+
 ## [5.7.0] - 2026-07-07
 
 ### Changed
