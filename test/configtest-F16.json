@@ -430,6 +430,9 @@
       "set_retry": "closure()",
       "setup_retry": "closure()"
     },
+    "singularity": {
+      "enabled": false
+    },
     "timeline": {
       "enabled": true,
       "file": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z/nextflow-log/timeline.html"
