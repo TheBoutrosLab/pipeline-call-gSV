@@ -19,7 +19,6 @@ Current Configuration:
     reference_fasta: ${params.reference_fasta}
     reference_fasta_index: "${params.reference_fasta}.fai"
     exclusion_file: ${params.exclusion_file}
-    mappability_map: ${params.mappability_map}
 
 - output:
     output_dir: ${params.output_dir}
@@ -215,10 +214,8 @@ workflow {
                 call_gCNV_Delly(
                     delly_meta,
                     input_bam_ch,
-                    call_gSV_Delly.out.bcf_sv_file.toList(),
                     params.reference_fasta,
-                    reference_fasta_index,
-                    params.mappability_map
+                    reference_fasta_index
                 )
 
                 convert_gCNV_BCF2VCF(
@@ -297,7 +294,6 @@ workflow {
                 input_bam_ch,
                 params.reference_fasta,
                 reference_fasta_index,
-                params.mappability_map,
                 params.merged_sites_gCNV
             )
 

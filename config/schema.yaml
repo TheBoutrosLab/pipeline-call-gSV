@@ -60,11 +60,6 @@ exclusion_file:
   mode: 'r'
   required: true
   help: 'Absolute path to an exclusion file'
-mappability_map:
-  type: 'Path'
-  mode: 'r'
-  required: true
-  help: 'Absolute path to a mappability file'
 map_qual:
   type: 'Integer'
   required: true

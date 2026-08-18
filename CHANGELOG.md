@@ -2,6 +2,17 @@
 
 All notable changes to the call-gSV pipeline.
 
+## [5.9.0] - 2026-08-18
+
+### Changed
+
+- Update DELLY `v2.3.0` to `v2.6.0`
+
+### Removed
+
+- `mappability_map` parameter (no longer required by DELLY `v2.6.0`)
+- `--svfile`/`--mappability` flags from CNV calling (removed in DELLY `v2.6.0`)
+
 ## [5.8.0] - 2026-07-08
 
 ### Added
