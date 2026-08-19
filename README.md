@@ -124,15 +124,16 @@ Currently the following filters are applied by Delly when calling CNVs. Paramete
 |:------------|:----------|:-------------------------|-------------|
 | `quality` | 10 |  | Minimum mapping quality |
 | `ploidy` | 2 | | Baseline ploidy |
+| `sdrd` | 2 | | Minimum SD read-depth shift |
+| `cn-offset` | 0.100000001 | | Minimum CN offset |
 | `cnv-size` | 1000 | | Minimum CNV size |
-| `window` | 0 | | Window size in bp (0: automatic) |
-| `fraction-unique` | 0.8 | | Uniqueness filter [0,1] |
-| `penalty` | 3 | | Segmentation penalty |
-| `cnv-merge` | 0.25 | | Min. log2 ratio to separate CNVs |
-| `cnv-qual` | 5 | | Min. quality for PASS |
+| `window-size` | 10000 | | Window size |
+| `window-offset` | 10000 | | Window offset |
+| `fraction-window` | 0.25 | | Minimum callable window fraction [0,1] |
 | `scan-window` | 10000 | | Scanning window size |
+| `fraction-unique` | 0.800000012 | | Uniqueness filter for scan windows [0,1] |
 | `mad-cutoff` | 3 | | Median + 3 * mad count cutoff |
-| `percentile` | 0.0005 | | Excl. extreme GC fraction |
+| `percentile` | 0.000500000024 | | Excl. extreme GC fraction |
 <br>
 
 ### 3. Check Output Quality
