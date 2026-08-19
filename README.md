@@ -116,7 +116,7 @@ Currently the following filters are applied by Delly when calling SVs. Parameter
 
 ### 2. Calling Copy Number Variants
 
-The second step of the pipeline identifies CNVs. To do this, Delly requires an aligned and sorted BAM file, as well as the BCF output from the SV calling step (to refine breakpoints) and a mappability map. Any CNVs identified are annotated and output as a single BCF file. For convenience, the pipeline also outputs a gzipped CNV VCF file.
+The second step of the pipeline identifies CNVs. To do this, Delly requires an aligned and sorted BAM file. Any CNVs identified are annotated and output as a single BCF file. For convenience, the pipeline also outputs a gzipped CNV VCF file.
 
 Currently the following filters are applied by Delly when calling CNVs. Parameters with a "call-gSV default" can be updated in the sample specific nextflow [config](config/template.config) file.
 <br>
@@ -124,16 +124,15 @@ Currently the following filters are applied by Delly when calling CNVs. Paramete
 |:------------|:----------|:-------------------------|-------------|
 | `quality` | 10 |  | Minimum mapping quality |
 | `ploidy` | 2 | | Baseline ploidy |
-| `sdrd` | 2 | | Minimum SD read-depth shift |
-| `cn-offset` | 0.100000001 | | Minimum CN offset |
 | `cnv-size` | 1000 | | Minimum CNV size |
-| `window-size` | 10000 | | Window size |
-| `window-offset` | 10000 | | Window offset |
-| `fraction-window` | 0.25 | | Minimum callable window fraction [0,1] |
+| `window` | 0 | | Window size in bp (0: automatic) |
+| `fraction-unique` | 0.8 | | Uniqueness filter [0,1] |
+| `penalty` | 3 | | Segmentation penalty |
+| `cnv-merge` | 0.25 | | Min. log2 ratio to separate CNVs |
+| `cnv-qual` | 5 | | Min. quality for PASS |
 | `scan-window` | 10000 | | Scanning window size |
-| `fraction-unique` | 0.800000012 | | Uniqueness filter for scan windows [0,1] |
 | `mad-cutoff` | 3 | | Median + 3 * mad count cutoff |
-| `percentile` | 0.000500000024 | | Excl. extreme GC fraction |
+| `percentile` | 0.0005 | | Excl. extreme GC fraction |
 <br>
 
 ### 3. Check Output Quality
@@ -152,7 +151,7 @@ Similar to the "discovery" process, the first step of the regenotyping pipeline 
 
 ### 2. Regenotyping Copy Number Variants
 
-The second possible step of the regenotyping pipeline requires an aligned and sorted BAM file, BAM index, and a merged sites BCF as an input, as well as the BCF output from the initial SV calling (to refine breakpoints) and a mappability map. Any CNVs identified are annotated and output as a single BCF file.
+The second possible step of the regenotyping pipeline requires an aligned and sorted BAM file, BAM index, and a merged sites BCF as an input. Any CNVs identified are annotated and output as a single BCF file.
 <br>
 
 ---
@@ -191,7 +190,6 @@ input:
 | `run_qc` | no | boolean | Optional parameter to indicate whether subsequent quality checks should be run on Delly outputs. Default value is `false`. |
 | `reference_fasta` | yes | path | Absolute path to the reference genome `FASTA` file. The reference genome is used by Delly for SV calling. |
 | `exclusion_file` | yes | path | Absolute path to the delly reference genome `exclusion` file utilized to remove suggested regions for SV calling. On Slurm, an HG38 exclusion file is located at `/example/delly/excludeTemplates/human.hg38.excl.tsv` |
-| `mappability_map` | yes | path | Absolute path to the delly mappability map to support GC and mappability fragment correction in CNV calling |
 | `map_qual` | no | path | minimum paired-end (PE) mapping quaility threshold for Delly. |
 | `save_intermediate_files` | yes | boolean | Optional parameter to indicate whether intermediate files will be saved. Default value is `false`. |
 | `output_dir` | yes | path | Absolute path to the directory where the output files to be saved. |
@@ -298,7 +296,6 @@ Test runs for the A-mini/partial/full samples were performed using the following
 
 * **reference_fasta:** /example/genome/GRCh38-BI-20160721/Homo_sapiens_assembly38.fasta
 * **exclusion_file:** /example/delly/excludeTemplates/human.hg38.excl.tsv
-* **mappability_map:** /example/delly/mappabilityMaps/Homo_sapiens.GRCh38.dna.primary_assembly.fa.r101.s501.blacklist.gz
 
 ### Performance Validation
 
