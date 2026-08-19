@@ -4,8 +4,6 @@ All notable changes to the call-gSV pipeline.
 
 ## [5.9.0] - 2026-08-19
 
-## [5.9.0] - 2026-08-18
-
 ### Changed
 
 - Update DELLY `v2.3.0` to `v2.6.0`
