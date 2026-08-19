@@ -116,7 +116,7 @@ Currently the following filters are applied by Delly when calling SVs. Parameter
 
 ### 2. Calling Copy Number Variants
 
-The second step of the pipeline identifies CNVs. To do this, Delly requires an aligned and sorted BAM file, as well as the BCF output from the SV calling step (to refine breakpoints) and a mappability map. Any CNVs identified are annotated and output as a single BCF file. For convenience, the pipeline also outputs a gzipped CNV VCF file.
+The second step of the pipeline identifies CNVs. To do this, Delly requires an aligned and sorted BAM file. Any CNVs identified are annotated and output as a single BCF file. For convenience, the pipeline also outputs a gzipped CNV VCF file.
 
 Currently the following filters are applied by Delly when calling CNVs. Parameters with a "call-gSV default" can be updated in the sample specific nextflow [config](config/template.config) file.
 <br>
@@ -152,7 +152,7 @@ Similar to the "discovery" process, the first step of the regenotyping pipeline 
 
 ### 2. Regenotyping Copy Number Variants
 
-The second possible step of the regenotyping pipeline requires an aligned and sorted BAM file, BAM index, and a merged sites BCF as an input, as well as the BCF output from the initial SV calling (to refine breakpoints) and a mappability map. Any CNVs identified are annotated and output as a single BCF file.
+The second possible step of the regenotyping pipeline requires an aligned and sorted BAM file, BAM index, and a merged sites BCF as an input. Any CNVs identified are annotated and output as a single BCF file.
 <br>
 
 ---
@@ -191,8 +191,7 @@ input:
 | `run_qc` | no | boolean | Optional parameter to indicate whether subsequent quality checks should be run on Delly outputs. Default value is `false`. |
 | `reference_fasta` | yes | path | Absolute path to the reference genome `FASTA` file. The reference genome is used by Delly for SV calling. |
 | `exclusion_file` | yes | path | Absolute path to the delly reference genome `exclusion` file utilized to remove suggested regions for SV calling. On Slurm, an HG38 exclusion file is located at `/example/delly/excludeTemplates/human.hg38.excl.tsv` |
-| `mappability_map` | yes | path | Absolute path to the delly mappability map to support GC and mappability fragment correction in CNV calling |
-| `map_qual` | no | path | minimum paired-end (PE) mapping quaility threshold for Delly. |
+| `map_qual` | no | path | minimum paired-end (PE) mapping quality threshold for Delly. |
 | `save_intermediate_files` | yes | boolean | Optional parameter to indicate whether intermediate files will be saved. Default value is `false`. |
 | `output_dir` | yes | path | Absolute path to the directory where the output files to be saved. |
 | `work_dir` | optional | path | The path to a temporary working directory for Nextflow, storing intermediate files and logs. It is recommended to use fast, local storage with high I/O performance. |
@@ -298,7 +297,6 @@ Test runs for the A-mini/partial/full samples were performed using the following
 
 * **reference_fasta:** /example/genome/GRCh38-BI-20160721/Homo_sapiens_assembly38.fasta
 * **exclusion_file:** /example/delly/excludeTemplates/human.hg38.excl.tsv
-* **mappability_map:** /example/delly/mappabilityMaps/Homo_sapiens.GRCh38.dna.primary_assembly.fa.r101.s501.blacklist.gz
 
 ### Performance Validation
 

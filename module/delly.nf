@@ -83,10 +83,8 @@ process call_gCNV_Delly {
     input:
         val(META)
         tuple val(bam_sample_name), path(input_bam), path(input_bam_bai)
-        path(delly_sv_file)
         path(reference_fasta)
         path(reference_fasta_fai)
-        path(mappability_file)
 
     output:
         path "${META.output_filename}_${params.GCNV}.bcf", emit: bcf_cnv_file
@@ -100,8 +98,6 @@ process call_gCNV_Delly {
         cnv \
         --genome        $reference_fasta \
         --outfile       ${META.output_filename}_${params.GCNV}.bcf \
-        --svfile        $delly_sv_file \
-        --mappability   $mappability_file \
         $input_bam
     """
     }
@@ -118,7 +114,6 @@ process regenotype_gCNV_Delly {
         tuple val(bam_sample_name), path(input_bam), path(input_bam_bai)
         path(reference_fasta)
         path(reference_fasta_fai)
-        path(mappability_file)
         path(sites)
 
     output:
@@ -133,7 +128,6 @@ process regenotype_gCNV_Delly {
         -u \
         -v $sites \
         --genome $reference_fasta \
-        -m $mappability_file \
         --outfile "${META.output_filename}_${params.RGCNV}.bcf" \
         "$input_bam"
     """
