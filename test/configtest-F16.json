@@ -1,446 +1,446 @@
 {
-    "nextflow_version": "23.10.0",
-    "config": [
-        "config/template.config"
-    ],
-    "params_file": "input/call-gSV-input.yaml",
-    "cpus": 16,
-    "memory_gb": 31,
-    "nf_params": {
-        "output_dir": "/tmp/test-only-outputs",
-        "delly_version": "2.6.0"
-    },
-    "envvars": {
-        "SLURM_JOB_ID": "300935"
-    },
-    "mocks": {
-        "check_path": "",
-        "parse_bam_header": {
-            "read_group": [
-                {
-                    "SM": "8675309"
-                }
-            ]
+  "nextflow_version": "23.10.0",
+  "config": [
+    "config/template.config"
+  ],
+  "params_file": "input/call-gSV-input.yaml",
+  "cpus": 16,
+  "memory_gb": 31,
+  "nf_params": {
+    "output_dir": "/tmp/test-only-outputs"
+  },
+  "envvars": {
+    "SLURM_JOB_ID": "300935"
+  },
+  "mocks": {
+    "check_path": "",
+    "parse_bam_header": {
+      "read_group": [
+        {
+          "SM": "8675309"
         }
-    },
-    "dated_fields": [
-        "params.log_output_dir",
-        "report.file",
-        "timeline.file",
-        "trace.file",
-        "params.date"
-    ],
-    "version_fields": [
-        "manifest.version",
-        "params.log_output_dir",
-        "params.output_dir_base",
-        "report.file",
-        "timeline.file",
-        "trace.file"
-    ],
-    "expected_result": {
-        "apptainer": {
-            "enabled": false
-        },
-        "docker": {
-            "all_group_ids": "$(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
-            "enabled": true,
-            "runOptions": "-u $(id -u):$(id -g) $(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
-            "uid_and_gid": "-u $(id -u):$(id -g)"
-        },
-        "manifest": {
-            "author": "Yu Pan, Tim Sanders, Yael Berkovich, Mohammed Faizal Eeman Mootor",
-            "description": "A pipeline to call germline structural variants utilizing Delly and Manta",
-            "name": "call-gSV",
-            "version": "VER.SI.ON"
-        },
-        "params": {
-            "GCNV": "gCNV",
-            "GSV": "gSV",
-            "RGCNV": "regenotyped-gCNV",
-            "RGSV": "regenotyped-gSV",
-            "base_allocations": {
-                "call_gCNV_Delly": {
-                    "cpus": "1",
-                    "memory": "8 GB"
-                },
-                "call_gSV_Delly": {
-                    "cpus": "1",
-                    "memory": "8 GB"
-                },
-                "call_gSV_Manta": {
-                    "cpus": "6",
-                    "memory": "8 GB"
-                },
-                "convert_BCF2VCF_BCFtools": {
-                    "cpus": "1",
-                    "memory": "1 GB"
-                },
-                "plot_DellySV_circlize": {
-                    "cpus": "1",
-                    "memory": "3 GB"
-                },
-                "plot_MantaSV_circlize": {
-                    "cpus": "1",
-                    "memory": "3 GB"
-                },
-                "run_gCNV_vcf_validator_VCFtools": {
-                    "cpus": "1",
-                    "memory": "1 GB"
-                },
-                "run_gCNV_vcfstats_RTGTools": {
-                    "cpus": "1",
-                    "memory": "1 GB"
-                },
-                "run_gSV_vcf_validator_VCFtools": {
-                    "cpus": "1",
-                    "memory": "1 GB"
-                },
-                "run_gSV_vcfstats_RTGTools": {
-                    "cpus": "1",
-                    "memory": "1 GB"
-                },
-                "run_validate_PipeVal": {
-                    "cpus": "1",
-                    "memory": "1 GB"
-                }
-            },
-            "bcftools_version": "1.23.1",
-            "blcds_registered_dataset": false,
-            "cache_intermediate_pipeline_steps": false,
-            "circlize_version": "0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
-            "container_mount_flag": "-v",
-            "dataset_id": "TEST",
-            "delly_version": "2.6.0",
-            "docker_container_registry_theboutroslab": "ghcr.io/theboutroslab",
-            "docker_container_registry_uclahscds": "ghcr.io/uclahs-cds",
-            "docker_image_bcftools": "ghcr.io/theboutroslab/bcftools:1.23.1",
-            "docker_image_circlize": "ghcr.io/yashpatel6/circlize:0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
-            "docker_image_delly": "ghcr.io/theboutroslab/delly:2.6.0",
-            "docker_image_manta": "ghcr.io/uclahs-cds/manta:1.6.0",
-            "docker_image_rtgtools": "ghcr.io/theboutroslab/rtg-tools:3.13",
-            "docker_image_validate": "ghcr.io/uclahs-cds/pipeval:5.2.0",
-            "docker_image_vcftools": "ghcr.io/theboutroslab/vcftools:0.1.17",
-            "exclusion_file": "/example/delly/excludeTemplates/human.hg38.excl.tsv",
-            "genome_build": "hg38",
-            "input": {
-                "BAM": {
-                    "normal": [
-                        "/absolute/path/to/input/BAM"
-                    ]
-                }
-            },
-            "log_output_dir": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z",
-            "manta_version": "1.6.0",
-            "map_qual": "20",
-            "max_cpus": "16",
-            "max_memory": "31 GB",
-            "max_time": "24d 20h 31m 24s",
-            "min_cpus": "1",
-            "min_memory": "1 MB",
-            "min_time": "1s",
-            "output_dir": "/tmp/test-only-outputs",
-            "output_dir_base": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309",
-            "pipeval_version": "5.2.0",
-            "reference_fasta": "/example/genome/GRCh38-BI-20160721/Homo_sapiens_assembly38.fasta",
-            "retry_information": {
-                "call_gCNV_Delly": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                },
-                "call_gSV_Delly": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                },
-                "call_gSV_Manta": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                },
-                "convert_BCF2VCF_BCFtools": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                },
-                "plot_DellySV_circlize": {
-                    "memory": {
-                        "operand": "5 GB",
-                        "strategy": "add"
-                    }
-                },
-                "plot_MantaSV_circlize": {
-                    "memory": {
-                        "operand": "5 GB",
-                        "strategy": "add"
-                    }
-                },
-                "run_gCNV_vcf_validator_VCFtools": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                },
-                "run_gCNV_vcfstats_RTGTools": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                },
-                "run_gSV_vcf_validator_VCFtools": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                },
-                "run_gSV_vcfstats_RTGTools": {
-                    "memory": {
-                        "operand": "2",
-                        "strategy": "exponential"
-                    }
-                }
-            },
-            "rtgtools_version": "3.13",
-            "run_delly": true,
-            "run_discovery": true,
-            "run_manta": true,
-            "run_qc": true,
-            "run_regenotyping": false,
-            "sample": "8675309",
-            "sample_to_process": [
-                {
-                    "id": "8675309",
-                    "path": "/absolute/path/to/input/BAM",
-                    "sample_type": "normal"
-                }
-            ],
-            "save_intermediate_files": false,
-            "ucla_cds": true,
-            "variant_type": [
-                "gSV",
-                "gCNV"
-            ],
-            "vcftools_version": "0.1.17",
-            "work_dir": "/scratch/300935"
-        },
-        "process": {
-            "afterScript": {
-                "1": "",
-                "2": "",
-                "3": "",
-                "closure": ""
-            },
-            "cache": false,
-            "commonRetryCodes": [
-                "104",
-                "134",
-                "137",
-                "139",
-                "143",
-                "247"
-            ],
-            "containerOptions": {
-                "1": "--cpu-shares 1024 --cpus $task.cpus",
-                "2": "--cpu-shares 1024 --cpus $task.cpus",
-                "3": "--cpu-shares 1024 --cpus $task.cpus",
-                "closure": "--cpu-shares 1024 --cpus $task.cpus"
-            },
-            "cpus": {
-                "1": "1",
-                "2": "2",
-                "3": "3",
-                "closure": "closure()"
-            },
-            "echo": true,
-            "errorStrategy": {
-                "1": "terminate",
-                "2": "terminate",
-                "3": "terminate",
-                "closure": "terminate"
-            },
-            "executor": "local",
-            "ext": {
-                "capture_logs": true,
-                "commonAfterScript": {
-                    "1": "",
-                    "2": "",
-                    "3": "",
-                    "closure": ""
-                },
-                "log_dir": {
-                    "1": "ext",
-                    "2": "ext",
-                    "3": "ext",
-                    "closure": "ext"
-                }
-            },
-            "maxRetries": "1",
-            "withLabel:process_high": {
-                "cpus": {
-                    "1": "12",
-                    "2": "16",
-                    "3": "16",
-                    "closure": "closure()"
-                },
-                "memory": {
-                    "1": "31 GB",
-                    "2": "31 GB",
-                    "3": "31 GB",
-                    "closure": "closure()"
-                }
-            },
-            "withLabel:process_low": {
-                "cpus": {
-                    "1": "2",
-                    "2": "4",
-                    "3": "6",
-                    "closure": "closure()"
-                },
-                "memory": {
-                    "1": "3 GB",
-                    "2": "6 GB",
-                    "3": "9 GB",
-                    "closure": "closure()"
-                }
-            },
-            "withLabel:process_medium": {
-                "cpus": {
-                    "1": "6",
-                    "2": "12",
-                    "3": "16",
-                    "closure": "closure()"
-                },
-                "memory": {
-                    "1": "31 GB",
-                    "2": "31 GB",
-                    "3": "31 GB",
-                    "closure": "closure()"
-                }
-            },
-            "withName:call_gCNV_Delly": {
-                "cpus": "1",
-                "memory": {
-                    "1": "8 GB",
-                    "2": "16 GB",
-                    "3": "31 GB",
-                    "closure": "retry_updater(8 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:call_gSV_Delly": {
-                "cpus": "1",
-                "memory": {
-                    "1": "8 GB",
-                    "2": "16 GB",
-                    "3": "31 GB",
-                    "closure": "retry_updater(8 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:call_gSV_Manta": {
-                "cpus": "6",
-                "ext": {
-                    "retry_codes": []
-                },
-                "memory": {
-                    "1": "8 GB",
-                    "2": "16 GB",
-                    "3": "31 GB",
-                    "closure": "retry_updater(8 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:convert_BCF2VCF_BCFtools": {
-                "cpus": "1",
-                "memory": {
-                    "1": "1 GB",
-                    "2": "2 GB",
-                    "3": "4 GB",
-                    "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:plot_DellySV_circlize": {
-                "cpus": "1",
-                "memory": {
-                    "1": "3 GB",
-                    "2": "8 GB",
-                    "3": "13 GB",
-                    "closure": "retry_updater(3 GB, add, 5 GB, $task.attempt, memory)"
-                }
-            },
-            "withName:plot_MantaSV_circlize": {
-                "cpus": "1",
-                "memory": {
-                    "1": "3 GB",
-                    "2": "8 GB",
-                    "3": "13 GB",
-                    "closure": "retry_updater(3 GB, add, 5 GB, $task.attempt, memory)"
-                }
-            },
-            "withName:run_gCNV_vcf_validator_VCFtools": {
-                "cpus": "1",
-                "memory": {
-                    "1": "1 GB",
-                    "2": "2 GB",
-                    "3": "4 GB",
-                    "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:run_gCNV_vcfstats_RTGTools": {
-                "cpus": "1",
-                "memory": {
-                    "1": "1 GB",
-                    "2": "2 GB",
-                    "3": "4 GB",
-                    "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:run_gSV_vcf_validator_VCFtools": {
-                "cpus": "1",
-                "memory": {
-                    "1": "1 GB",
-                    "2": "2 GB",
-                    "3": "4 GB",
-                    "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:run_gSV_vcfstats_RTGTools": {
-                "cpus": "1",
-                "memory": {
-                    "1": "1 GB",
-                    "2": "2 GB",
-                    "3": "4 GB",
-                    "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
-                }
-            },
-            "withName:run_validate_PipeVal": {
-                "cpus": "1",
-                "memory": "1 GB"
-            }
-        },
-        "report": {
-            "enabled": true,
-            "file": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z/nextflow-log/report.html"
-        },
-        "resource_handler": {
-            "handle_resources": "closure()",
-            "set_resource_limit_params": "closure()",
-            "set_retry": "closure()",
-            "setup_retry": "closure()"
-        },
-        "singularity": {
-            "enabled": false
-        },
-        "timeline": {
-            "enabled": true,
-            "file": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z/nextflow-log/timeline.html"
-        },
-        "trace": {
-            "enabled": true,
-            "file": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z/nextflow-log/trace.txt"
-        },
-        "workDir": "/scratch/300935"
+      ]
     }
+  },
+  "dated_fields": [
+    "params.log_output_dir",
+    "report.file",
+    "timeline.file",
+    "trace.file",
+    "params.date"
+  ],
+  "version_fields": [
+    "manifest.version",
+    "params.log_output_dir",
+    "params.output_dir_base",
+    "report.file",
+    "timeline.file",
+    "trace.file"
+  ],
+  "expected_result": {
+    "apptainer": {
+      "enabled": false
+    },
+    "docker": {
+      "all_group_ids": "$(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
+      "enabled": true,
+      "runOptions": "-u $(id -u):$(id -g) $(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
+      "uid_and_gid": "-u $(id -u):$(id -g)"
+    },
+    "manifest": {
+      "author": "Yu Pan, Tim Sanders, Yael Berkovich, Mohammed Faizal Eeman Mootor",
+      "description": "A pipeline to call germline structural variants utilizing Delly and Manta",
+      "name": "call-gSV",
+      "version": "VER.SI.ON"
+    },
+    "params": {
+      "GCNV": "gCNV",
+      "GSV": "gSV",
+      "RGCNV": "regenotyped-gCNV",
+      "RGSV": "regenotyped-gSV",
+      "base_allocations": {
+        "call_gCNV_Delly": {
+          "cpus": "1",
+          "memory": "8 GB"
+        },
+        "call_gSV_Delly": {
+          "cpus": "1",
+          "memory": "8 GB"
+        },
+        "call_gSV_Manta": {
+          "cpus": "6",
+          "memory": "8 GB"
+        },
+        "convert_BCF2VCF_BCFtools": {
+          "cpus": "1",
+          "memory": "1 GB"
+        },
+        "plot_DellySV_circlize": {
+          "cpus": "1",
+          "memory": "3 GB"
+        },
+        "plot_MantaSV_circlize": {
+          "cpus": "1",
+          "memory": "3 GB"
+        },
+        "run_gCNV_vcf_validator_VCFtools": {
+          "cpus": "1",
+          "memory": "1 GB"
+        },
+        "run_gCNV_vcfstats_RTGTools": {
+          "cpus": "1",
+          "memory": "1 GB"
+        },
+        "run_gSV_vcf_validator_VCFtools": {
+          "cpus": "1",
+          "memory": "1 GB"
+        },
+        "run_gSV_vcfstats_RTGTools": {
+          "cpus": "1",
+          "memory": "1 GB"
+        },
+        "run_validate_PipeVal": {
+          "cpus": "1",
+          "memory": "1 GB"
+        }
+      },
+      "bcftools_version": "1.23.1",
+      "blcds_registered_dataset": false,
+      "cache_intermediate_pipeline_steps": false,
+      "circlize_version": "0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
+      "container_mount_flag": "-v",
+      "dataset_id": "TEST",
+      "delly_version": "2.3.0",
+      "docker_container_registry_theboutroslab": "ghcr.io/theboutroslab",
+      "docker_container_registry_uclahscds": "ghcr.io/uclahs-cds",
+      "docker_image_bcftools": "ghcr.io/theboutroslab/bcftools:1.23.1",
+      "docker_image_circlize": "ghcr.io/yashpatel6/circlize:0.4.16_vcfR-1.15.0_BoutrosLab.plotting.general-7.1.0",
+      "docker_image_delly": "ghcr.io/theboutroslab/delly:2.3.0",
+      "docker_image_manta": "ghcr.io/uclahs-cds/manta:1.6.0",
+      "docker_image_rtgtools": "ghcr.io/theboutroslab/rtg-tools:3.13",
+      "docker_image_validate": "ghcr.io/uclahs-cds/pipeval:5.2.0",
+      "docker_image_vcftools": "ghcr.io/theboutroslab/vcftools:0.1.17",
+      "exclusion_file": "/example/delly/excludeTemplates/human.hg38.excl.tsv",
+      "genome_build": "hg38",
+      "input": {
+        "BAM": {
+          "normal": [
+            "/absolute/path/to/input/BAM"
+          ]
+        }
+      },
+      "log_output_dir": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z",
+      "manta_version": "1.6.0",
+      "map_qual": "20",
+      "mappability_map": "/example/delly/mappabilityMaps/Homo_sapiens.GRCh38.dna.primary_assembly.fa.r101.s501.blacklist.gz",
+      "max_cpus": "16",
+      "max_memory": "31 GB",
+      "max_time": "24d 20h 31m 24s",
+      "min_cpus": "1",
+      "min_memory": "1 MB",
+      "min_time": "1s",
+      "output_dir": "/tmp/test-only-outputs",
+      "output_dir_base": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309",
+      "pipeval_version": "5.2.0",
+      "reference_fasta": "/example/genome/GRCh38-BI-20160721/Homo_sapiens_assembly38.fasta",
+      "retry_information": {
+        "call_gCNV_Delly": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        },
+        "call_gSV_Delly": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        },
+        "call_gSV_Manta": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        },
+        "convert_BCF2VCF_BCFtools": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        },
+        "plot_DellySV_circlize": {
+          "memory": {
+            "operand": "5 GB",
+            "strategy": "add"
+          }
+        },
+        "plot_MantaSV_circlize": {
+          "memory": {
+            "operand": "5 GB",
+            "strategy": "add"
+          }
+        },
+        "run_gCNV_vcf_validator_VCFtools": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        },
+        "run_gCNV_vcfstats_RTGTools": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        },
+        "run_gSV_vcf_validator_VCFtools": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        },
+        "run_gSV_vcfstats_RTGTools": {
+          "memory": {
+            "operand": "2",
+            "strategy": "exponential"
+          }
+        }
+      },
+      "rtgtools_version": "3.13",
+      "run_delly": true,
+      "run_discovery": true,
+      "run_manta": true,
+      "run_qc": true,
+      "run_regenotyping": false,
+      "sample": "8675309",
+      "sample_to_process": [
+        {
+          "id": "8675309",
+          "path": "/absolute/path/to/input/BAM",
+          "sample_type": "normal"
+        }
+      ],
+      "save_intermediate_files": false,
+      "ucla_cds": true,
+      "variant_type": [
+        "gSV",
+        "gCNV"
+      ],
+      "vcftools_version": "0.1.17",
+      "work_dir": "/scratch/300935"
+    },
+    "process": {
+      "afterScript": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "closure": ""
+      },
+      "cache": false,
+      "commonRetryCodes": [
+        "104",
+        "134",
+        "137",
+        "139",
+        "143",
+        "247"
+      ],
+      "containerOptions": {
+        "1": "--cpu-shares 1024 --cpus $task.cpus",
+        "2": "--cpu-shares 1024 --cpus $task.cpus",
+        "3": "--cpu-shares 1024 --cpus $task.cpus",
+        "closure": "--cpu-shares 1024 --cpus $task.cpus"
+      },
+      "cpus": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "closure": "closure()"
+      },
+      "echo": true,
+      "errorStrategy": {
+        "1": "terminate",
+        "2": "terminate",
+        "3": "terminate",
+        "closure": "terminate"
+      },
+      "executor": "local",
+      "ext": {
+        "capture_logs": true,
+        "commonAfterScript": {
+          "1": "",
+          "2": "",
+          "3": "",
+          "closure": ""
+        },
+        "log_dir": {
+          "1": "ext",
+          "2": "ext",
+          "3": "ext",
+          "closure": "ext"
+        }
+      },
+      "maxRetries": "1",
+      "withLabel:process_high": {
+        "cpus": {
+          "1": "12",
+          "2": "16",
+          "3": "16",
+          "closure": "closure()"
+        },
+        "memory": {
+          "1": "31 GB",
+          "2": "31 GB",
+          "3": "31 GB",
+          "closure": "closure()"
+        }
+      },
+      "withLabel:process_low": {
+        "cpus": {
+          "1": "2",
+          "2": "4",
+          "3": "6",
+          "closure": "closure()"
+        },
+        "memory": {
+          "1": "3 GB",
+          "2": "6 GB",
+          "3": "9 GB",
+          "closure": "closure()"
+        }
+      },
+      "withLabel:process_medium": {
+        "cpus": {
+          "1": "6",
+          "2": "12",
+          "3": "16",
+          "closure": "closure()"
+        },
+        "memory": {
+          "1": "31 GB",
+          "2": "31 GB",
+          "3": "31 GB",
+          "closure": "closure()"
+        }
+      },
+      "withName:call_gCNV_Delly": {
+        "cpus": "1",
+        "memory": {
+          "1": "8 GB",
+          "2": "16 GB",
+          "3": "31 GB",
+          "closure": "retry_updater(8 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:call_gSV_Delly": {
+        "cpus": "1",
+        "memory": {
+          "1": "8 GB",
+          "2": "16 GB",
+          "3": "31 GB",
+          "closure": "retry_updater(8 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:call_gSV_Manta": {
+        "cpus": "6",
+        "ext": {
+          "retry_codes": []
+        },
+        "memory": {
+          "1": "8 GB",
+          "2": "16 GB",
+          "3": "31 GB",
+          "closure": "retry_updater(8 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:convert_BCF2VCF_BCFtools": {
+        "cpus": "1",
+        "memory": {
+          "1": "1 GB",
+          "2": "2 GB",
+          "3": "4 GB",
+          "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:plot_DellySV_circlize": {
+        "cpus": "1",
+        "memory": {
+          "1": "3 GB",
+          "2": "8 GB",
+          "3": "13 GB",
+          "closure": "retry_updater(3 GB, add, 5 GB, $task.attempt, memory)"
+        }
+      },
+      "withName:plot_MantaSV_circlize": {
+        "cpus": "1",
+        "memory": {
+          "1": "3 GB",
+          "2": "8 GB",
+          "3": "13 GB",
+          "closure": "retry_updater(3 GB, add, 5 GB, $task.attempt, memory)"
+        }
+      },
+      "withName:run_gCNV_vcf_validator_VCFtools": {
+        "cpus": "1",
+        "memory": {
+          "1": "1 GB",
+          "2": "2 GB",
+          "3": "4 GB",
+          "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:run_gCNV_vcfstats_RTGTools": {
+        "cpus": "1",
+        "memory": {
+          "1": "1 GB",
+          "2": "2 GB",
+          "3": "4 GB",
+          "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:run_gSV_vcf_validator_VCFtools": {
+        "cpus": "1",
+        "memory": {
+          "1": "1 GB",
+          "2": "2 GB",
+          "3": "4 GB",
+          "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:run_gSV_vcfstats_RTGTools": {
+        "cpus": "1",
+        "memory": {
+          "1": "1 GB",
+          "2": "2 GB",
+          "3": "4 GB",
+          "closure": "retry_updater(1 GB, exponential, 2, $task.attempt, memory)"
+        }
+      },
+      "withName:run_validate_PipeVal": {
+        "cpus": "1",
+        "memory": "1 GB"
+      }
+    },
+    "report": {
+      "enabled": true,
+      "file": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z/nextflow-log/report.html"
+    },
+    "resource_handler": {
+      "handle_resources": "closure()",
+      "set_resource_limit_params": "closure()",
+      "set_retry": "closure()",
+      "setup_retry": "closure()"
+    },
+    "singularity": {
+      "enabled": false
+    },
+    "timeline": {
+      "enabled": true,
+      "file": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z/nextflow-log/timeline.html"
+    },
+    "trace": {
+      "enabled": true,
+      "file": "/tmp/test-only-outputs/call-gSV-VER.SI.ON/8675309/log-call-gSV-VER.SI.ON-19970704T165655Z/nextflow-log/trace.txt"
+    },
+    "workDir": "/scratch/300935"
+  }
 }
