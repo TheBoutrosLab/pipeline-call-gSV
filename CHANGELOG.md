@@ -261,4 +261,4 @@ All notable changes to the call-gSV pipeline.
 [5.6.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.5.0...v5.6.0
 [5.7.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.6.0...v5.7.0
 [5.8.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.7.0...v5.8.0
-[5.9.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.9.0...v5.9.0
+[5.9.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.8.0...v5.9.0
