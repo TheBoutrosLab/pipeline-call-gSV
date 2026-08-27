@@ -305,4 +305,8 @@ workflow {
             )
         }
     }
+
+    workflow.onComplete = {
+        WorkflowFinalizer.completeWorkflow(workflow, params);
+    }
 }
