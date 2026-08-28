@@ -4,6 +4,10 @@ All notable changes to the call-gSV pipeline.
 
 ## [5.10.0] - 2026-08-28
 
+### Changed
+
+- Tar process logs on success
+
 ## [5.9.0] - 2026-08-19
 
 ### Changed
