@@ -4,6 +4,8 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+## [5.11.0] - 2026-10-05
+
 ### Changed
 
 - Update DELLY `v2.6.0` to `v2.7.0`
@@ -267,6 +269,7 @@ All notable changes to the call-gSV pipeline.
 [5.0.0-rc.1]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v4.0.1...v5.0.0-rc.1
 [5.1.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.0.0...v5.1.0
 [5.10.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.9.0...v5.10.0
+[5.11.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.10.0...v5.11.0
 [5.2.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.1.0...v5.2.0
 [5.3.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.2.0...v5.3.0
 [5.4.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.3.0...v5.4.0
@@ -275,3 +278,4 @@ All notable changes to the call-gSV pipeline.
 [5.7.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.6.0...v5.7.0
 [5.8.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.7.0...v5.8.0
 [5.9.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.8.0...v5.9.0
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.0...HEAD
