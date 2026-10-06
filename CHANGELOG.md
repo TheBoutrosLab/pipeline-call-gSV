@@ -4,6 +4,10 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+### Changed
+
+- Update module submodule with CRAM validation handling
+
 ## [5.11.0] - 2026-10-05
 
 ### Changed
