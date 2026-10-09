@@ -4,6 +4,10 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+### Changed
+
+- Update config submodule to fix task property access
+
 ## [5.11.1] - 2026-10-06
 
 ### Changed
