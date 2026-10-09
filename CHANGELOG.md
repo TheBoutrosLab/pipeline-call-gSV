@@ -4,6 +4,8 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+## [5.11.2] - 2026-10-09
+
 ### Changed
 
 - Update config submodule to fix task property access
@@ -281,6 +283,7 @@ All notable changes to the call-gSV pipeline.
 [5.10.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.9.0...v5.10.0
 [5.11.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.10.0...v5.11.0
 [5.11.1]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.0...v5.11.1
+[5.11.2]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.1...v5.11.2
 [5.2.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.1.0...v5.2.0
 [5.3.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.2.0...v5.3.0
 [5.4.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.3.0...v5.4.0
@@ -289,4 +292,4 @@ All notable changes to the call-gSV pipeline.
 [5.7.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.6.0...v5.7.0
 [5.8.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.7.0...v5.8.0
 [5.9.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.8.0...v5.9.0
-[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.1...HEAD
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.2...HEAD
