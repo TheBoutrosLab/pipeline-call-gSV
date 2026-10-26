@@ -4,6 +4,10 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+### Changed
+
+- Support Nextflow `25.10.5`
+
 ## [5.11.2] - 2026-10-09
 
 ### Changed
