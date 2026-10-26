@@ -18,7 +18,8 @@ process plot_SV_circlize {
 
     publishDir "${META.workflow_output_dir}/QC",
         pattern: "*.png",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)

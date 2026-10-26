@@ -13,7 +13,8 @@ process run_vcf_validator_VCFtools {
 
     publishDir "${META.workflow_output_dir}/QC/${task.process.replace(':', '/')}",
         pattern: "*_validation.txt",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val META

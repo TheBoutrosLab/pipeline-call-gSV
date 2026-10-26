@@ -13,7 +13,8 @@ process run_sha512sum {
 
     publishDir "${params.workflow_output_dir}/output",
         pattern: "*.sha512",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     ext log_dir_suffix: { "/${task.process.split(':')[-1]}-${task.index}" }
 
