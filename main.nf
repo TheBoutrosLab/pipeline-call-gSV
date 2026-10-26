@@ -117,7 +117,8 @@ workflow {
             ),
             "output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}/output",
             "workflow_output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}",
-            "workflow_log_dir": "${base_m.log_output_dir}/DELLY-${params.delly_version}"
+            "workflow_log_dir": "${base_m.log_output_dir}/DELLY-${params.delly_version}",
+            "project_dir": "${projectDir}"
         ]
     }
 
@@ -131,7 +132,8 @@ workflow {
             ),
             "output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}/output",
             "workflow_output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}",
-            "workflow_log_dir": "${base_m.log_output_dir}/Manta-${params.manta_version}"
+            "workflow_log_dir": "${base_m.log_output_dir}/Manta-${params.manta_version}",
+            "project_dir": "${projectDir}"
         ]
     }
 
