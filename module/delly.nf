@@ -13,7 +13,8 @@ process call_gSV_Delly {
 
     publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)
@@ -45,7 +46,8 @@ process regenotype_gSV_Delly {
 
     publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)
@@ -78,7 +80,8 @@ process call_gCNV_Delly {
 
     publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)
@@ -107,7 +110,8 @@ process regenotype_gCNV_Delly {
 
     publishDir "${META.workflow_output_dir}/output",
         pattern: "*.bcf*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val(META)

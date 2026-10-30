@@ -1,7 +1,5 @@
 #!/usr/bin/env nextflow
 
-nextflow.enable.dsl=2
-
 log.info """\
 =======================================
 C A L L - G S V   N F   P I P E L I N E
@@ -81,7 +79,7 @@ include {
 
 
 
-Channel.from(params.sample_to_process)
+Channel.fromList(params.sample_to_process)
     .map{ sample -> ['index': indexFile(sample.path)] + sample }
     .set{ input_ch_samples_with_index }
 
@@ -119,7 +117,8 @@ workflow {
             ),
             "output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}/output",
             "workflow_output_dir": "${base_m.output_dir_base}/DELLY-${params.delly_version}",
-            "workflow_log_dir": "${base_m.log_output_dir}/DELLY-${params.delly_version}"
+            "workflow_log_dir": "${base_m.log_output_dir}/DELLY-${params.delly_version}",
+            "project_dir": "${projectDir}"
         ]
     }
 
@@ -133,7 +132,8 @@ workflow {
             ),
             "output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}/output",
             "workflow_output_dir": "${base_m.output_dir_base}/Manta-${params.manta_version}",
-            "workflow_log_dir": "${base_m.log_output_dir}/Manta-${params.manta_version}"
+            "workflow_log_dir": "${base_m.log_output_dir}/Manta-${params.manta_version}",
+            "project_dir": "${projectDir}"
         ]
     }
 
