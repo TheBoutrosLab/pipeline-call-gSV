@@ -4,6 +4,8 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+## [6.0.0] - 2026-10-30
+
 ### Changed
 
 - Update to support Nextflow v25.10.5
@@ -296,4 +298,5 @@ All notable changes to the call-gSV pipeline.
 [5.7.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.6.0...v5.7.0
 [5.8.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.7.0...v5.8.0
 [5.9.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.8.0...v5.9.0
-[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.2...HEAD
+[6.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.2...v6.0.0
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v6.0.0...HEAD
