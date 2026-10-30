@@ -14,7 +14,8 @@ process run_vcfstats_RTGTools {
     publishDir "${META.workflow_output_dir}/intermediate/${task.process.replace(':', '/')}",
         enabled: params.save_intermediate_files,
         pattern: "*_stats.txt",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     input:
         val META

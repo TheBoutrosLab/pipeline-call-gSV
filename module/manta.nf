@@ -13,12 +13,14 @@ process call_gSV_Manta {
 
     publishDir "${META.workflow_output_dir}/output",
         pattern: "*vcf.gz*",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
 
     publishDir "${META.workflow_output_dir}/QC",
         pattern: "*Stats*",
         mode: "copy",
-        saveAs: { "${META.output_filename}_${file(it).getName()}" }
+        saveAs: { "${META.output_filename}_${file(it).getName()}" },
+        failOnError: false
 
     input:
         val(META)
