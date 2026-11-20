@@ -4,6 +4,8 @@ All notable changes to the call-gSV pipeline.
 
 ## [Unreleased]
 
+## [6.1.0] - 2026-11-20
+
 ### Changed
 
 - Disable `ociAutoPull` when library or cache dir is given
@@ -303,4 +305,5 @@ All notable changes to the call-gSV pipeline.
 [5.8.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.7.0...v5.8.0
 [5.9.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.8.0...v5.9.0
 [6.0.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v5.11.2...v6.0.0
-[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v6.0.0...HEAD
+[6.1.0]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v6.0.0...v6.1.0
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-call-gSV/compare/v6.1.0...HEAD
